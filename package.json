@@ -1,0 +1,23 @@
+{
+  "name": "ui-editor-extend",
+  "version": "0.0.1",
+  "description": "时之幻想曲UI导出扩展",
+  "author": "lijin",
+  "main": "main.js",
+  "scene-script": "scene-walker.js",
+  "main-menu": {
+    "时之幻想曲/导出UI": {
+      "message": "ui-editor-extend:exportUI"
+    }
+  },
+  "scripts": {
+    "test": "main.js"
+  },
+  "keywords": [
+    "jthd"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1"
+  }
+}
