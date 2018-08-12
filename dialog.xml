@@ -1,0 +1,66 @@
+<DIALOG Name="Dlg_SevenDayTarget" Width="1280" Height="720">
+	<IMAGEPICTURE Name="dialog_bg_0" Width="1280" Height="720" ItemAlign="1" Touchable="false">
+		<Resource>
+			<FrameImage FileName="frame/dialog_bg_0.png" FrameMode="1"/>
+		</Resource>
+	</IMAGEPICTURE>
+	<IMAGEPICTURE Name="dialog_badge" x="12" y="4" Width="81" Height="77" ItemAlign="1" Touchable="false">
+		<Resource>
+			<FrameImage FileName="frame/dialog_badge.png" FrameMode="1"/>
+		</Resource>
+	</IMAGEPICTURE>
+	<RADIOBUTTON Name="radio_btn_0" x="24" y="96" width="180" height="90">
+		<Resource>
+			<NormalSprite FileName="button/button_p_normal.png" FrameMode="1"/>
+			<PressedSprite FileName="button/button_p_pressed.png" FrameMode="1"/>
+		</Resource>
+	</RADIOBUTTON>
+	<BUTTON Name="radio_btn_1" x="24" y="190" width="180" height="90">
+		<Resource>
+			<NormalSprite FileName="button/button_p_normal.png" FrameMode="1"/>
+			<PressedSprite FileName="button/button_p_pressed.png" FrameMode="1"/>
+		</Resource>
+	</BUTTON>
+	<BUTTON Name="radio_btn_2" x="24" y="279.3" width="180" height="90">
+		<Resource>
+			<NormalSprite FileName="button/button_p_normal.png" FrameMode="1"/>
+			<PressedSprite FileName="button/button_p_pressed.png" FrameMode="1"/>
+		</Resource>
+	</BUTTON>
+	<BUTTON Name="radio_btn_3" x="24" y="374.9" width="180" height="90">
+		<Resource>
+			<NormalSprite FileName="button/button_p_normal.png" FrameMode="1"/>
+			<PressedSprite FileName="button/button_p_pressed.png" FrameMode="1"/>
+		</Resource>
+	</BUTTON>
+	<BUTTON Name="radio_btn_4" x="24" y="467" width="180" height="90">
+		<Resource>
+			<NormalSprite FileName="button/button_p_normal.png" FrameMode="1"/>
+			<PressedSprite FileName="button/button_p_pressed.png" FrameMode="1"/>
+		</Resource>
+	</BUTTON>
+	<BUTTON Name="radio_btn_5" x="24" y="558.4" width="180" height="90">
+		<Resource>
+			<NormalSprite FileName="button/button_p_normal.png" FrameMode="1"/>
+			<PressedSprite FileName="button/button_p_pressed.png" FrameMode="1"/>
+		</Resource>
+	</BUTTON>
+	<BUTTON Name="radio_btn_6" x="24" y="651" width="180" height="90">
+		<Resource>
+			<NormalSprite FileName="button/button_p_normal.png" FrameMode="1"/>
+			<PressedSprite FileName="button/button_p_pressed.png" FrameMode="1"/>
+		</Resource>
+	</BUTTON>
+	<IMAGEPICTURE Name="qirimubiao" x="216" y="66" Width="1064" Height="214" ItemAlign="1" Touchable="false">
+		<Resource>
+			<FrameImage FileName="picture/qirimubiao/qirimubiao.png" FrameMode="1"/>
+		</Resource>
+	</IMAGEPICTURE>
+	<BUTTON Name="btn_get" x="1029" y="170" width="153" height="50">
+		<Resource>
+			<NormalSprite FileName="button/button_q_normal.png" FrameMode="1"/>
+			<PressedSprite FileName="button/button_q_pressed.png" FrameMode="1"/>
+		</Resource>
+	</BUTTON>
+
+</DIALOG>

@@ -6,9 +6,19 @@
   "main": "main.js",
   "scene-script": "scene-walker.js",
   "main-menu": {
+    "时之幻想曲/设置...": {
+      "message": "ui-editor-extend:openSetting"
+    },
     "时之幻想曲/导出UI": {
       "message": "ui-editor-extend:exportUI"
     }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "Setting",
+    "width": 400,
+    "height": 300
   },
   "scripts": {
     "test": "main.js"

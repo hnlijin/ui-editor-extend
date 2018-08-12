@@ -15,6 +15,9 @@ module.exports = {
   },
 
   messages: {
+    'ui-editor-extend:openSetting': function() {
+      Editor.Panel.open('ui-editor-extend');
+    },
     'ui-editor-extend:exportUI': function() {
       Editor.log('开始导出XML。。。');
       Editor.Scene.callSceneScript('ui-editor-extend', 'exportXML', function (err, data) {
