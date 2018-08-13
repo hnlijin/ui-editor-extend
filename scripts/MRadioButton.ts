@@ -5,7 +5,6 @@ export default class MRadioButton extends cc.Component {
 
     @property buttonID: number = -1;
     @property groupID: number = -1;
-    @property pressSoundID: number = 0;
 
     // LIFE-CYCLE CALLBACKS:
 

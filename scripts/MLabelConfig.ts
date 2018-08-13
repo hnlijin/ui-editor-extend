@@ -81,7 +81,6 @@ export default class MLabelConfig extends cc.Component {
     }) colorID: ColorID  = ColorID.ID_0;
 
     @property fontAlias: string = "btn_a";
-    
 
     // LIFE-CYCLE CALLBACKS:
 

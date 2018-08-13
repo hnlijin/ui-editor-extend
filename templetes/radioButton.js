@@ -69,9 +69,6 @@ module.exports = {
 		if (radio.groupID > -1) {
 			data.groupID = radio.groupID;
 		}
-		if (radio.pressSoundID > 0) {
-			data.pressSoundID = radio.pressSoundID;
-		}
 		let label = node.getComponentInChildren(cc.Label);
 		let labelConfig = node.getComponentInChildren("MLabelConfig");
 		if (label != null && labelConfig != null) {
@@ -82,7 +79,11 @@ module.exports = {
 				alignVert: label.verticalAlign,
 				string: label.string,
 			}
-		} 
+		}
+		let soundID = node.getComponent("MSoundID");
+		if (soundID != null) {
+			data.pressSoundID = soundID.pressSoundID;
+		}
 		return data;
 	},
 	toXML: function(data) {

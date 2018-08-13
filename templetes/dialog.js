@@ -2,7 +2,9 @@ var ejs = require('ejs');
 var utils = require("./../utils");
 
 var templ =
-'<DIALOG Name="<%= dialog.name %>" Width="<%= dialog.width %>" Height="<%= dialog.height %>">\n\
+'<DIALOG Name="<%= dialog.name %>" Width="<%= dialog.width %>" Height="<%= dialog.height %>"\
+<% if (dialog.staticRender) { %> StaticRender="<%= dialog.staticRender %>"<% } %>\
+>\n\
 <% if (dialog.frame) { %>\
 	<Resource>\n\
 		<FrameImage FileName="<%= dialog.frame.fileName %> " FrameMode="<%= dialog.frame.frameMode %>">\n\
@@ -23,8 +25,12 @@ module.exports = {
 		if (sprite != null) {
 			data.frame = {
                 url: sprite.spriteFrame.getTexture().url,
-                frameMode: '1',
+                frameMode: 1,
             }
+		}
+		let mDialog = node.getComponent("MDialog");
+		if (mDialog != null) {
+			data.staticRender = mDialog.staticRender;
 		}
 		return data;
 	},

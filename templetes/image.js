@@ -29,7 +29,7 @@ module.exports = {
 			return null;
 		}
 		let data = {
-			type: "cc.Sprite",
+			type: "MImage",
 	        name: node.name,
 	        x: node.x, 
 	        y: node.y,
@@ -41,6 +41,10 @@ module.exports = {
 	            url: sprite.spriteFrame.getTexture().url,
 	            frameMode: '1',
 	        }
+		}
+		let mTouchable = node.getComponent("MTouchable");
+		if (mTouchable != null) {
+			data.touchable = mTouchable.touchable;
 		}
 		return data;
 	},
