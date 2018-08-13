@@ -1,3 +1,5 @@
+import { FrameMode } from "./MMacros";
+
 const {ccclass, property} = cc._decorator;
 
 enum ListType {
@@ -28,8 +30,12 @@ export default class MList extends cc.Component {
     @property(cc.SpriteFrame) upSprite: cc.SpriteFrame = null;
     @property(cc.SpriteFrame) downSprite: cc.SpriteFrame = null;
 
-    @property upSpriteFrameMode: number = 1;
-    @property downSpriteFrameMode: number = 1;
+    @property({
+        type: cc.Enum(FrameMode)
+    }) upSpriteFrameMode: number = FrameMode.SPRITE_1x1;
+    @property({
+        type: cc.Enum(FrameMode)
+    }) downSpriteFrameMode: number = FrameMode.SPRITE_1x1;
 
     // LIFE-CYCLE CALLBACKS:
 

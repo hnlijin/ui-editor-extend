@@ -15,10 +15,10 @@ var templ =
 		<Resource>\n\
 			<NormalImage \
 FileName="<%= button.normalSprite.fileName %>"\
-<% if (button.normalSprite.frameMode) { %> FrameMode="<%= button.normalSprite.frameMode %>"<% } %>/>\n\
+<% if (button.normalSprite.frameMode > 0) { %> FrameMode="<%= button.normalSprite.frameMode %>"<% } %>/>\n\
 			<CheckedImage \
-FileName="<%= button.pressedSprite.fileName %>"\
-<% if (button.pressedSprite.frameMode) { %> FrameMode="<%= button.pressedSprite.frameMode %>"<% } %>/>\n\
+FileName="<%= button.checkedSprite.fileName %>"\
+<% if (button.checkedSprite.frameMode > 0) { %> FrameMode="<%= button.checkedSprite.frameMode %>"<% } %>/>\n\
 			<CornerMarkImage \
 FileName="<%= button.markSprite.fileName %>"\
 <% if (button.markSprite.frameMode) { %> FrameMode="<%= button.markSprite.frameMode %>"<% } %>/>\n\
@@ -28,8 +28,8 @@ FileName="<%= button.markSprite.fileName %>"\
 Align="<%= button.label.align %>" \
 AlignVert="<%= button.label.alignVert %>" \
 ColorID="<%= button.label.colorID %>" \
-String="<%= button.label.string %>"/>\
-<% } %>\n\
+String="<%= button.label.string %>"/>\n\
+<% } %>\
 	</RADIO>\
 ';
 module.exports = {
@@ -52,15 +52,15 @@ module.exports = {
 			height: node.height,
 			normalSprite: {
 				url: button.normalSprite.getTexture().url,
-				frameMode: 1,
+				frameMode: radio.normalSpriteFrameMode,
 			},
-			pressedSprite: {
+			checkedSprite: {
 				url: button.pressedSprite.getTexture().url,
-				frameMode: 1,
+				frameMode: radio.pressedSpriteFrameMode,
 			},
 			markSprite: {
-				url: button.pressedSprite.getTexture().url,
-				frameMode: 1,
+				url: button.disabledSprite.getTexture().url,
+				frameMode: radio.disabledSpriteFrameMode,
 			}
 		};
 		if (radio.buttonID > -1) {
@@ -89,7 +89,7 @@ module.exports = {
 	toXML: function(data) {
 		data.y = Math.abs(data.y);
 		data.normalSprite.fileName = utils.urlToResPath(data.normalSprite.url);
-		data.pressedSprite.fileName = utils.urlToResPath(data.pressedSprite.url);
+		data.checkedSprite.fileName = utils.urlToResPath(data.checkedSprite.url);
 		data.markSprite.fileName = utils.urlToResPath(data.markSprite.url);
 		let xml = ejs.render(templ, {button: data}, utils.ejs.opts);
         return xml;

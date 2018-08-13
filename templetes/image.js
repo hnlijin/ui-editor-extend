@@ -39,8 +39,12 @@ module.exports = {
 	        touchable: false,
 	        frame: {
 	            url: sprite.spriteFrame.getTexture().url,
-	            frameMode: '1',
+	            frameMode: 1,
 	        }
+		}
+		let mImage = node.getComponent("MImage");
+		if (mImage != null) {
+			data.frame.frameMode = mImage.frameMode;
 		}
 		let mTouchable = node.getComponent("MTouchable");
 		if (mTouchable != null) {

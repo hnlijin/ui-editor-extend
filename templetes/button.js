@@ -23,7 +23,7 @@ FileName="<%= button.downSprite.fileName %>"\
 Align="<%= button.label.align %>" \
 AlignVert="<%= button.label.alignVert %>" \
 ColorID="<%= button.label.colorID %>" \
-String="<%= button.label.string %>"/>\
+String="<%= button.label.string %>"/>\n\
 <% } %>\
 	</STILLIMAGEBUTTON>\
 ';

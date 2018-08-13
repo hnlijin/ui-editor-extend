@@ -31,10 +31,12 @@ module.exports = {
 		let mDialog = node.getComponent("MDialog");
 		if (mDialog != null) {
 			data.staticRender = mDialog.staticRender;
+			data.frame.frameMode = mDialog.frameMode;
 		}
 		return data;
 	},
 	toXML: function(data) {
+		data.frame.fileName = utils.urlToResPath(data.frame.url);
 		let xml = ejs.render(templ, {dialog: data}, utils.ejs.opts);
 		return xml;
 	}
