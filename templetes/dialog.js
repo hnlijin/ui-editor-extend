@@ -18,6 +18,7 @@ module.exports = {
 	toData: function(node) {
 		let sprite = node.getComponent(cc.Sprite);
 		let data = {
+			fileName: node._prefab.asset._name,
 			name: node.name,
 	        width: node.width,
 	        height: node.height,

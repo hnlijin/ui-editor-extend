@@ -6,8 +6,8 @@ var templ =
 	<STILLIMAGEBUTTON Name="<%= button.name %>"\
 <% if (button.x != null) { %> x="<%= button.x %>"<% } %>\
 <% if (button.y != null) { %> y="<%= button.y %>"<% } %>\
-<% if (button.width != null) { %> width="<%= button.width %>"<% } %>\
-<% if (button.height != null) { %> height="<%= button.height %>"<% } %>\
+<% if (button.width != null) { %> Width="<%= button.width %>"<% } %>\
+<% if (button.height != null) { %> Height="<%= button.height %>"<% } %>\
 <% if (button.pressSoundID > 0) { %> PressSoundID="<%= button.pressSoundID %>"<% } %>\
 >\n\
 		<Resource>\n\

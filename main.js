@@ -1,17 +1,21 @@
 'use strict';
+
 var ejs = require("ejs")
 var os = require("os");
 var fs = require("fs");
 var DlgTempl = require("./templetes");
 var utils = require("./utils");
+var settings = require("./settings");
 
 module.exports = {
   load () {
     // 当 package 被正确加载的时候执行
+    settings.load();
   },
 
   unload () {
     // 当 package 被正确卸载的时候执行
+    settings.save();
   },
 
   messages: {
@@ -40,7 +44,7 @@ module.exports = {
         data.content = content;
         let dialog = DlgTempl.dialog.toXML(data);
         Editor.log(dialog);
-        fs.writeFileSync(os.homedir() + "\\.CocosCreator\\packages\\ui-editor-extend\\dialog.xml", dialog);
+        fs.writeFileSync(settings.client_res_interface_path + "\\" + data.fileName + ".xml", dialog);
       });
     }
   },

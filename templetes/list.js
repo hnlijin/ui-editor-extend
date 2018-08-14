@@ -6,8 +6,8 @@ var templ =
 	<LIST Name="<%= list.name %>"\
 <% if (list.x != null) { %> x="<%= list.x %>"<% } %>\
 <% if (list.y != null) { %> y="<%= list.y %>"<% } %>\
-<% if (list.width != null) { %> width="<%= list.width %>"<% } %>\
-<% if (list.height != null) { %> height="<%= list.height %>"<% } %>\
+<% if (list.width != null) { %> Width="<%= list.width %>"<% } %>\
+<% if (list.height != null) { %> Height="<%= list.height %>"<% } %>\
 <% if (list.lineSpace > 0) { %> LineSpace="<%= list.lineSpace %>"<% } %>\
 <% if (list.itemInterval > 0) { %> ItemInterval="<%= list.itemInterval %>"<% } %>\
 <% if (list.pressSoundID > 0) { %> PressSoundID="<%= list.pressSoundID %>"<% } %>\
