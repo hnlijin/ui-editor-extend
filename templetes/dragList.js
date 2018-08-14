@@ -27,7 +27,7 @@ module.exports = {
 			return null;
 		}
 		let data = {
-			type: "MList",
+			type: "MDragList",
 			name: node.name,
 			x: node.x,
 			y: node.y,
