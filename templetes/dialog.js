@@ -23,7 +23,7 @@ module.exports = {
 	        width: node.width,
 	        height: node.height,
 		};
-		if (sprite != null) {
+		if (sprite != null && sprite.enabled == true) {
 			data.frame = {
                 url: sprite.spriteFrame.getTexture().url,
                 frameMode: 1,
@@ -32,12 +32,16 @@ module.exports = {
 		let mDialog = node.getComponent("MDialog");
 		if (mDialog != null) {
 			data.staticRender = mDialog.staticRender;
-			data.frame.frameMode = mDialog.frameMode;
+			if (sprite != null && sprite.enabled == true) {
+				data.frame.frameMode = mDialog.frameMode;
+			}
 		}
 		return data;
 	},
 	toXML: function(data) {
-		data.frame.fileName = utils.urlToResPath(data.frame.url);
+		if (data.frame != null) {
+			data.frame.fileName = utils.urlToResPath(data.frame.url);
+		}
 		let xml = ejs.render(templ, {dialog: data}, utils.ejs.opts);
 		return xml;
 	}
