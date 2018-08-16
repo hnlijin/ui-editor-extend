@@ -11,6 +11,9 @@
     },
     "时之幻想曲/导出UI": {
       "message": "ui-editor-extend:exportUI"
+    },
+    "时之幻想曲/更新Editor": {
+      "message": "ui-editor-extend:updateEditor"
     }
   },
   "panel": {

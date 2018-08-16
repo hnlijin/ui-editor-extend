@@ -21,7 +21,7 @@ module.exports = {
 	templ: templ,
 	toData: function(node) {
 		let label = node.getComponent(cc.Label);
-		if (label == null) {
+		if (label == null || label.enabled == false) {
 			return null;
 		}
 		let data = {
@@ -37,12 +37,12 @@ module.exports = {
 			touchable: false,
 		}
 		let labelConfig = node.getComponent("MLabelConfig");
-		if (labelConfig != null) {
+		if (labelConfig != null && labelConfig.enabled == true) {
 			data.fontAlias = labelConfig.fontAlias;
 			data.colorID = parseInt(labelConfig.colorID);
 		} 
 		let mTouchable = node.getComponent("MTouchable");
-		if (mTouchable != null) {
+		if (mTouchable != null && mTouchable.enabled == true) {
 			data.touchable = mTouchable.touchable;
 		}
 		return data;

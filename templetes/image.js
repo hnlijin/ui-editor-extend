@@ -25,7 +25,7 @@ module.exports = {
 	templ: templ,
 	toData: function(node) {
 		let sprite = node.getComponent(cc.Sprite);
-		if (sprite == null) {
+		if (sprite == null || sprite.enabled == false) {
 			return null;
 		}
 		let data = {
@@ -43,11 +43,11 @@ module.exports = {
 	        }
 		}
 		let mImage = node.getComponent("MImage");
-		if (mImage != null) {
+		if (mImage != null && mImage.enabled == true) {
 			data.frame.frameMode = mImage.frameMode;
 		}
 		let mTouchable = node.getComponent("MTouchable");
-		if (mTouchable != null) {
+		if (mTouchable != null && mTouchable.enabled == true) {
 			data.touchable = mTouchable.touchable;
 		}
 		return data;

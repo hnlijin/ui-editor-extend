@@ -31,7 +31,7 @@ module.exports = {
 	templ: templ,
 	toData: function(node) {
 		let list = node.getComponent("MList");
-		if (list == null) {
+		if (list == null || list.enabled == false) {
 			return null;
 		}
 		if (list.type != 0) {
@@ -61,7 +61,7 @@ module.exports = {
 			};
 		}
 		let soundID = node.getComponent("MSoundID");
-		if (soundID != null) {
+		if (soundID != null && soundID.enabled == true) {
 			data.pressSoundID = soundID.pressSoundID;
 		}
 		return data;

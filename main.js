@@ -3,6 +3,8 @@
 var ejs = require("ejs")
 var os = require("os");
 var fs = require("fs");
+var path = require("path");
+const { exec } = require('child_process');
 var DlgTempl = require("./templetes");
 var utils = require("./utils");
 var settings = require("./settings");
@@ -45,6 +47,17 @@ module.exports = {
         let dialog = DlgTempl.dialog.toXML(data);
         Editor.log(dialog);
         fs.writeFileSync(settings.client_res_interface_path + "\\" + data.fileName + ".xml", dialog);
+      });
+    },
+    'ui-editor-extend:updateEditor': function() {
+      Editor.log("更新Editor。。。");
+      let editorPath = path.join(os.homedir(), ".CocosCreator", "packages", "ui-editor-extend");
+      exec("git stash & git checkout . & git pull", {cwd: editorPath}, function(err) {
+        if (err != null) {
+          Editor.log("更新Editor失败：", err);
+        } else {
+          Editor.log("更新Editor成功。");
+        }
       });
     }
   },

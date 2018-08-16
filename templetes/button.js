@@ -31,10 +31,9 @@ module.exports = {
 	templ: templ,
 	toData: function(node) {
 		let button = node.getComponent(cc.Button);
-		if (button == null) {
+		if (button == null || button.enabled == false) {
 			return null;
 		}
-		let mButton = node.getComponent("MButton");
 		let data = {
 			type: "MButton",
 			name: node.name,
@@ -51,13 +50,14 @@ module.exports = {
 				frameMode: 1,
 			}
 		};
-		if (mButton != null) {
+		let mButton = node.getComponent("MButton");
+		if (mButton != null && mButton.enabled == true) {
 			data.upSprite.frameMode = mButton.upSpriteFrameMode;
 			data.downSprite.frameMode = mButton.downSpriteFrameMode;
 		}
 		let label = node.getComponentInChildren(cc.Label);
 		let labelConfig = node.getComponentInChildren("MLabelConfig");
-		if (label != null && labelConfig != null) {
+		if (label != null && labelConfig != null && label.enabled == true && labelConfig.enabled == true) {
 			data.label = {
 				fontAlias: labelConfig.fontAlias,
 				colorID: parseInt(labelConfig.colorID),
@@ -67,7 +67,7 @@ module.exports = {
 			}
 		}
 		let soundID = node.getComponent("MSoundID");
-		if (soundID != null) {
+		if (soundID != null && soundID.enabled == true) {
 			data.pressSoundID = soundID.pressSoundID;
 		}
 		return data;

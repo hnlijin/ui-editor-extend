@@ -19,9 +19,16 @@ FileName="<%= button.normalSprite.fileName %>"\
 			<CheckedImage \
 FileName="<%= button.checkedSprite.fileName %>"\
 <% if (button.checkedSprite.frameMode > 0) { %> FrameMode="<%= button.checkedSprite.frameMode %>"<% } %>/>\n\
+<% if (button.markSprite != null) { %>\
 			<CornerMarkImage \
 FileName="<%= button.markSprite.fileName %>"\
-<% if (button.markSprite.frameMode) { %> FrameMode="<%= button.markSprite.frameMode %>"<% } %>/>\n\
+<% if (button.markSprite.frameMode) { %> FrameMode="<%= button.markSprite.frameMode %>"<% } %>\
+<% if (button.markSprite.x) { %> x="<%= button.markSprite.x %>"<% } %>\
+<% if (button.markSprite.y) { %> y="<%= button.markSprite.y %>"<% } %>\
+<% if (button.markSprite.width) { %> Width="<%= button.markSprite.width %>"<% } %>\
+<% if (button.markSprite.height) { %> Height="<%= button.markSprite.height %>"<% } %>\
+/>\n\
+<% } %>\
 		</Resource>\n\
 <% if (button.label != null) { %>\
 		<Text FontAlias="<%= button.label.fontAlias %>" \
@@ -36,7 +43,7 @@ module.exports = {
 	templ: templ,
 	toData: function(node) {
 		let radio = node.getComponent("MRadioButton");
-		if (radio == null) {
+		if (radio == null || radio.enabled == false) {
 			return null;
 		}
 		let button = node.getComponent(cc.Button);
@@ -57,10 +64,6 @@ module.exports = {
 			checkedSprite: {
 				url: button.pressedSprite.getTexture().url,
 				frameMode: radio.pressedSpriteFrameMode,
-			},
-			markSprite: {
-				url: button.disabledSprite.getTexture().url,
-				frameMode: radio.disabledSpriteFrameMode,
 			}
 		};
 		if (radio.buttonID > -1) {
@@ -71,7 +74,7 @@ module.exports = {
 		}
 		let label = node.getComponentInChildren(cc.Label);
 		let labelConfig = node.getComponentInChildren("MLabelConfig");
-		if (label != null && labelConfig != null) {
+		if (label != null && labelConfig != null && label.enabled == true && labelConfig.enabled == true) {
 			data.label = {
 				fontAlias: labelConfig.fontAlias,
 				colorID: parseInt(labelConfig.colorID),
@@ -80,8 +83,23 @@ module.exports = {
 				string: label.string,
 			}
 		}
+		let markNode = node.getChildByName("Mark");
+		if (markNode != null && markNode.active == true) {
+			let markSprite = markNode.getComponent(cc.Sprite);
+			let markImage = markNode.getComponent("MImage");
+			if (markSprite != null && markImage != null) {
+				data.markSprite = {
+					x: markNode.x,
+					y: markNode.y,
+					width: markNode.width,
+					height: markNode.height,
+					url: markSprite.spriteFrame.getTexture().url,
+					frameMode: markImage.frameMode,
+				};
+			}
+		}
 		let soundID = node.getComponent("MSoundID");
-		if (soundID != null) {
+		if (soundID != null && soundID.enabled == true) {
 			data.pressSoundID = soundID.pressSoundID;
 		}
 		return data;
@@ -90,7 +108,9 @@ module.exports = {
 		data.y = Math.abs(data.y);
 		data.normalSprite.fileName = utils.urlToResPath(data.normalSprite.url);
 		data.checkedSprite.fileName = utils.urlToResPath(data.checkedSprite.url);
-		data.markSprite.fileName = utils.urlToResPath(data.markSprite.url);
+		if (data.markSprite != null) {
+			data.markSprite.fileName = utils.urlToResPath(data.markSprite.url);
+		}
 		let xml = ejs.render(templ, {button: data}, utils.ejs.opts);
         return xml;
 	}

@@ -16,13 +16,13 @@ var templ =
 module.exports = {
 	templ: templ,
 	toData: function(node) {
-		let sprite = node.getComponent(cc.Sprite);
 		let data = {
 			fileName: node._prefab.asset._name,
 			name: node.name,
 	        width: node.width,
 	        height: node.height,
 		};
+		let sprite = node.getComponent(cc.Sprite);
 		if (sprite != null && sprite.enabled == true) {
 			data.frame = {
                 url: sprite.spriteFrame.getTexture().url,
@@ -30,7 +30,7 @@ module.exports = {
             }
 		}
 		let mDialog = node.getComponent("MDialog");
-		if (mDialog != null) {
+		if (mDialog != null && mDialog.enabled == true) {
 			data.staticRender = mDialog.staticRender;
 			if (sprite != null && sprite.enabled == true) {
 				data.frame.frameMode = mDialog.frameMode;
