@@ -13,7 +13,10 @@ var templ =
 Align="<%= label.align %>" \
 AlignVert="<%= label.alignVert %>" \
 ColorID="<%= label.colorID %>" \
-String="<%= label.string %>"/>\n\
+<% if (label.string != "") { %>\
+String="<%= label.string %>"\
+<% } %>\
+/>\n\
 	</FREELABEL>\
 ';
 

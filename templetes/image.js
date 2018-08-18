@@ -37,13 +37,16 @@ module.exports = {
 	        height: node.height,
 	        alignType: 1,
 	        touchable: false,
-	        frame: {
+	        
+		}
+		if (sprite.spriteFrame != null) {
+			data.frame = {
 	            url: sprite.spriteFrame.getTexture().url,
 	            frameMode: 1,
 	        }
 		}
 		let mImage = node.getComponent("MImage");
-		if (mImage != null && mImage.enabled == true) {
+		if (mImage != null && mImage.enabled == true && data.frame != null) {
 			data.frame.frameMode = mImage.frameMode;
 		}
 		let mTouchable = node.getComponent("MTouchable");
@@ -54,7 +57,9 @@ module.exports = {
 	},
 	toXML: function(data) {
 		data.y = Math.abs(data.y);
-        data.frame.fileName = utils.urlToResPath(data.frame.url);
+		if (data.frame != null && data.frame.url != null) {
+			data.frame.fileName = utils.urlToResPath(data.frame.url);	
+		} 
         let xml = ejs.render(templ, {image: data}, utils.ejs.opts);
         return xml;
 	},
