@@ -62,7 +62,7 @@ module.exports = {
 		}
 		let mProgressBar = node.getComponent("MProgress2");
 		if (mProgressBar != null) {
-			data.mode = parseInt(mProgressBar.mode),
+			data.mode = parseInt(mProgressBar.mode)
 		}
 		let barNode = node.getChildByName("bar");
 		if (barNode != null && barNode.active == true) {
