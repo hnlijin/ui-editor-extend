@@ -7,10 +7,12 @@ let dragList = require("./dragList");
 let clippingContainer = require("./clippingContainer");
 let scrollBar = require("./scrollBar");
 let progress2 = require("./progress2");
+let atlaslabel = require("./atlaslabel");
 
 DlgTempl = {
 	dialog: require("./dialog"),
     list: [
+        atlaslabel,
 		progress2,
         scrollBar,
         clippingContainer,
@@ -22,6 +24,7 @@ DlgTempl = {
     	image,
     ],
     dict: {
+        "MAtlasLabel": atlaslabel,
 		"MProgressBar2":progress2,
         "MScrollBar": scrollBar,
         "MClippingContainer": clippingContainer,
