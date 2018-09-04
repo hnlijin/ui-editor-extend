@@ -8,6 +8,7 @@ var templ =
 <% if (container.y) { %> y="<%= container.y %>"<% } %>\
 <% if (container.width) { %> Width="<%= container.width %>"<% } %>\
 <% if (container.height) { %> Height="<%= container.height %>"<% } %>\
+<% if (container.horizontal) { %> Horizontal="<%= container.horizontal %>"<% } %>\
 >\n\
 <% if (container.barSprite != null) { %>\
 		<Resource>\n\
@@ -37,6 +38,9 @@ module.exports = {
 	        y: node.y,
 	        width: node.width,
 	        height: node.height
+		}
+		if (scrollBar.direction == cc.Scrollbar.Direction.HORIZONTAL) {
+			data.horizontal = true;
 		}
 		let barNode = node.getChildByName("bar");
 		if (barNode != null && barNode.active == true) {

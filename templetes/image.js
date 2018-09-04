@@ -25,7 +25,7 @@ module.exports = {
 	templ: templ,
 	toData: function(node) {
 		let sprite = node.getComponent(cc.Sprite);
-		if (sprite == null || sprite.enabled == false) {
+		if (sprite == null) {
 			return null;
 		}
 		let data = {
@@ -37,9 +37,8 @@ module.exports = {
 	        height: node.height,
 	        alignType: 1,
 	        touchable: false,
-	        
 		}
-		if (sprite.spriteFrame != null) {
+		if (sprite.enabled == true && sprite.spriteFrame != null) {
 			data.frame = {
 	            url: sprite.spriteFrame.getTexture().url,
 	            frameMode: 1,

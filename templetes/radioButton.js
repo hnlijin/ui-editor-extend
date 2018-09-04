@@ -25,8 +25,8 @@ FileName="<%= button.markSprite.fileName %>"\
 <% if (button.markSprite.frameMode) { %> FrameMode="<%= button.markSprite.frameMode %>"<% } %>\
 <% if (button.markSprite.x) { %> x="<%= button.markSprite.x %>"<% } %>\
 <% if (button.markSprite.y) { %> y="<%= button.markSprite.y %>"<% } %>\
-<% if (button.markSprite.width) { %> Width="<%= button.markSprite.width %>"<% } %>\
-<% if (button.markSprite.height) { %> Height="<%= button.markSprite.height %>"<% } %>\
+<% if (button.markSprite.width) { %> w="<%= button.markSprite.width %>"<% } %>\
+<% if (button.markSprite.height) { %> h="<%= button.markSprite.height %>"<% } %>\
 />\n\
 <% } %>\
 		</Resource>\n\
