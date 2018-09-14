@@ -55,4 +55,20 @@ module.exports = {
         let xml = ejs.render(templ, {label: data}, utils.ejs.opts);
         return xml;
 	},
+	toNode: function(data) {
+		Editor.log("label:", data)
+		var node = new cc.Node();
+		node.name = data.$.Name;
+		node.x = data.$.x;
+		node.y = data.$.y;
+		node.width = data.$.Width;
+		node.height = data.$.Height;
+		var label = node.addComponent(cc.Label);
+		if (data.Text && data.Text.$.String) {
+			label.string = data.Text.$.String;
+			label.horizontalAlign = data.Text.$.Align;
+			label.verticalAlign = data.Text.$.AlignVert;
+		}
+		return node;
+	}
 }

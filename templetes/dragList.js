@@ -45,5 +45,8 @@ module.exports = {
 		data.y = Math.abs(data.y);
 		let xml = ejs.render(templ, {list: data}, utils.ejs.opts);
         return xml;
+	},
+	toNode: function(data) {
+		return null;
 	}
 }

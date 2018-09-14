@@ -44,5 +44,12 @@ module.exports = {
 		}
 		let xml = ejs.render(templ, {dialog: data}, utils.ejs.opts);
 		return xml;
+	},
+	toNode: function(data) {
+		var node = new cc.Node();
+		node.name = data.$.Name;
+		node.width = data.$.Width;
+		node.height = data.$.Height;
+		return node;
 	}
 }

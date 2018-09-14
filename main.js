@@ -4,6 +4,7 @@ var ejs = require("ejs")
 var os = require("os");
 var fs = require("fs");
 var path = require("path");
+var xml2js = require('xml2js');
 const { exec } = require('child_process');
 var DlgTempl = require("./templetes");
 var utils = require("./utils");
@@ -48,6 +49,18 @@ module.exports = {
         Editor.log(dialog);
         fs.writeFileSync(settings.client_res_interface_path + "\\" + data.fileName + ".xml", dialog);
       });
+    },
+    'ui-editor-extend:importUI': function() {
+      let res = Editor.Dialog.openFile({
+        properties: ['openFile']
+      });
+      if (res && res[0]) {
+        let xml = fs.readFileSync(res[0], {encoding: 'utf8'});
+        xml2js.parseString(xml, {preserveChildrenOrder: true, explicitChildren: true}, (err, json) => {
+          Editor.Scene.callSceneScript('ui-editor-extend', 'importUI', json, function (err, res) {
+          });
+        });
+      }
     },
     'ui-editor-extend:updateEditor': function() {
       Editor.log("更新Editor。。。");

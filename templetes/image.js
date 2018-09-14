@@ -62,4 +62,7 @@ module.exports = {
         let xml = ejs.render(templ, {image: data}, utils.ejs.opts);
         return xml;
 	},
+	toNode: function(data) {
+		return null;
+	}
 }

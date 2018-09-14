@@ -8,9 +8,10 @@ let clippingContainer = require("./clippingContainer");
 let scrollBar = require("./scrollBar");
 let progress2 = require("./progress2");
 let atlaslabel = require("./atlaslabel");
+let dialog = require("./dialog");
 
 DlgTempl = {
-	dialog: require("./dialog"),
+	dialog: dialog,
     list: [
         atlaslabel,
 		progress2,
@@ -34,6 +35,19 @@ DlgTempl = {
     	"MRadioButton": radioButton,
     	"MButton": button,
     	"MImage": image,
+    },
+    node: {
+        "ATLASLABEL": atlaslabel, 
+        "PROGRESS2": progress2,
+        "SCROLLBAR": scrollBar,
+        "CLIPPINGCONTAINER": clippingContainer,
+        "DRAGLIST": dragList,
+        "FREELABEL": label,        
+        "LIST": list,
+        "RADIO": radioButton,
+        "STILLIMAGEBUTTON": button,
+        "IMAGEPICTURE": image,
+        "DIALOG": dialog,
     }
 }
 

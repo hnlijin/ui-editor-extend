@@ -128,4 +128,7 @@ module.exports = {
         let xml = ejs.render(templ, {progress: data}, utils.ejs.opts);
         return xml;
 	},
+	toNode: function(data) {
+		return null;
+	}
 }

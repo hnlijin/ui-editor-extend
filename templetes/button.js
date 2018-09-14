@@ -78,5 +78,8 @@ module.exports = {
 		data.downSprite.fileName = utils.urlToResPath(data.downSprite.url);
 		let xml = ejs.render(templ, {button: data}, utils.ejs.opts);
         return xml;
+	},
+	toNode: function(data) {
+		return null;
 	}
 }
