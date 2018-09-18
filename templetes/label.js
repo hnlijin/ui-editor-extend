@@ -56,18 +56,26 @@ module.exports = {
         return xml;
 	},
 	toNode: function(data) {
-		Editor.log("label:", data)
+		Editor.log("Label:", data)
 		var node = new cc.Node();
 		node.name = data.$.Name;
 		node.x = data.$.x;
 		node.y = data.$.y;
 		node.width = data.$.Width;
-		node.height = data.$.Height;
-		var label = node.addComponent(cc.Label);
-		if (data.Text && data.Text.$.String) {
-			label.string = data.Text.$.String;
-			label.horizontalAlign = data.Text.$.Align;
-			label.verticalAlign = data.Text.$.AlignVert;
+		node.height = -data.$.Height;
+		node.anchorX = 0.5;
+		node.anchorY = 0.5;
+		for (let index in data.$$) {
+			let item = data.$$[index];
+			let k = item["#name"];
+			Editor.log(k, ":", item);
+			if (k == "Text") {
+				var label = node.addComponent(cc.Label);
+				label.overflow = cc.Label.Overflow.CLAMP;
+				label.string = item.$.String;
+				label.horizontalAlign = cc.Enum(tem.$.Align);
+				label.verticalAlign = cc.Enum(item.$.AlignVert);
+			}
 		}
 		return node;
 	}

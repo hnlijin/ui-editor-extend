@@ -50,6 +50,8 @@ module.exports = {
 		node.name = data.$.Name;
 		node.width = data.$.Width;
 		node.height = data.$.Height;
+		node.anchorX = 0;
+		node.anchorY = 1;
 		return node;
 	}
 }

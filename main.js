@@ -46,7 +46,7 @@ module.exports = {
         }
         data.content = content;
         let dialog = DlgTempl.dialog.toXML(data);
-        Editor.log(dialog);
+        Editor.log(data.fileName, dialog);
         fs.writeFileSync(settings.client_res_interface_path + "\\" + data.fileName + ".xml", dialog);
       });
     },
