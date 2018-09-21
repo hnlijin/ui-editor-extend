@@ -7,8 +7,8 @@ var path = require("path");
 var xml2js = require('xml2js');
 const { exec } = require('child_process');
 var DlgTempl = require("./templetes");
-var utils = require("./utils");
 var settings = require("./settings");
+var utils = require("./utils");
 
 module.exports = {
   load () {
@@ -57,6 +57,10 @@ module.exports = {
       if (res && res[0]) {
         let xml = fs.readFileSync(res[0], {encoding: 'utf8'});
         xml2js.parseString(xml, {preserveChildrenOrder: true, explicitChildren: true}, (err, json) => {
+          if (err != null) {
+            Editor.error("parse xml fail: ", res[0], err);
+            return;
+          }
           Editor.Scene.callSceneScript('ui-editor-extend', 'importUI', json, function (err, res) {
           });
         });
@@ -71,6 +75,17 @@ module.exports = {
         } else {
           Editor.log("更新Editor成功。");
         }
+      });
+    },
+    "ui-editor-extend:getSurfacePath": function(event, fileName) {
+      let p = utils.getSurfacePath(fileName);
+      let tarPath = 'db://assets/resources/' + path.dirname(fileName);
+      Editor.assetdb.import([p], tarPath, function(err, res) {
+        if (err != null || res.length <= 0) {
+          Editor.error("getSurfacePath error:", fileName);
+          return;
+        }
+        event.reply(res[0].url);
       });
     }
   },

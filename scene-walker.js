@@ -42,7 +42,6 @@ module.exports = {
         for (let index in data.DIALOG.$$) {
             let item = data.DIALOG.$$[index];
             let k = item["#name"];
-            // Editor.log(k, item);
             if (k != "Resource") {
                 let templ = DlgTempl.node[k];
                 if (templ != null && templ.toNode instanceof Function) {

@@ -60,11 +60,11 @@ module.exports = {
 		var node = new cc.Node();
 		node.name = data.$.Name;
 		node.x = data.$.x;
-		node.y = data.$.y;
+		node.y = -data.$.y;
 		node.width = data.$.Width;
-		node.height = -data.$.Height;
-		node.anchorX = 0.5;
-		node.anchorY = 0.5;
+		node.height = data.$.Height;
+		node.anchorX = 0;
+		node.anchorY = 1;
 		for (let index in data.$$) {
 			let item = data.$$[index];
 			let k = item["#name"];
@@ -72,10 +72,37 @@ module.exports = {
 			if (k == "Text") {
 				var label = node.addComponent(cc.Label);
 				label.overflow = cc.Label.Overflow.CLAMP;
-				label.string = item.$.String;
-				label.horizontalAlign = cc.Enum(tem.$.Align);
-				label.verticalAlign = cc.Enum(item.$.AlignVert);
+				if (item.$.String != null) {
+					label.string = item.$.String;
+				}
+				if (item.$.Align == cc.Label.HorizontalAlign.LEFT) {
+					label.horizontalAlign = cc.Label.HorizontalAlign.LEFT;
+				} else if (item.$.Align == cc.Label.HorizontalAlign.CENTER) {
+					label.horizontalAlign = cc.Label.HorizontalAlign.CENTER;
+				} else if (item.$.Align == cc.Label.HorizontalAlign.RIGHT) {
+					label.horizontalAlign = cc.Label.HorizontalAlign.RIGHT;
+				}
+				if (item.$.AlignVert == cc.Label.VerticalAlign.TOP) {
+					label.verticalAlign = cc.Label.VerticalAlign.TOP;
+				} else if (item.$.AlignVert == cc.Label.VerticalAlign.CENTER) {
+					label.verticalAlign = cc.Label.VerticalAlign.CENTER;
+				} else if (item.$.AlignVert == cc.Label.VerticalAlign.BOTTOM) {
+					label.verticalAlign = cc.Label.VerticalAlign.BOTTOM;
+				}
+				let mLabelConfig = node.addComponent("MLabelConfig");
+				if (item.$.FontAlias != null) {
+					mLabelConfig.fontAlias = item.$.FontAlias;
+				}
+				if (item.$.ColorID != null) {
+					mLabelConfig.colorID = item.$.ColorID;
+				}
 			}
+		}
+		let mTouchable = node.addComponent("MTouchable");
+		if (data.$.Touchable != null) {
+			mTouchable.touchable = data.$.Touchable;
+		} else {
+			mTouchable.touchable = false;
 		}
 		return node;
 	}

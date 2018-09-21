@@ -1,4 +1,7 @@
 var path = require("path");
+var fs = require("fs");
+var os = require("os");
+var settings = require("./settings");
 
 function isIgnoreItem(url) {
 	let uuid = urlTouuid(url);
@@ -23,6 +26,17 @@ function urlToResPath(url) {
 	return "";
 }
 
+function getSurfacePath(fileName) {
+	let surfacePaths = settings.surface_paths;
+	for (let k in surfacePaths) {
+		let p = path.join(settings.client_res_path, "resource", "assets", surfacePaths[k], fileName);
+		if(fs.existsSync(p)) {
+			return p;
+		}
+	}
+	return null;
+}
+
 module.exports = {
 	ejs: {
 		opts: {
@@ -34,4 +48,5 @@ module.exports = {
 	uuidToPath: uuidToPath,
 	urlToResPath: urlToResPath,
 	isIgnoreItem: isIgnoreItem,
+	getSurfacePath: getSurfacePath,
 }

@@ -1,5 +1,6 @@
 var ejs = require('ejs');
 var utils = require("./../utils");
+var path = require('path');
 
 var templ =
 '\
@@ -63,6 +64,48 @@ module.exports = {
         return xml;
 	},
 	toNode: function(data) {
-		return null;
+		// Editor.log("Image:", data)
+		var node = new cc.Node();
+		node.name = data.$.Name;
+		if (data.$.x != null) {
+			node.x = data.$.x;
+		}
+		if (data.$.y != null) {
+			node.y = -data.$.y;
+		}
+		node.width = data.$.Width;
+		node.height = data.$.Height;
+		node.anchorX = 0;
+		node.anchorY = 1;
+		let sprite = node.addComponent(cc.Sprite);
+		sprite.trim = false;
+		var macros = cc.require('MMacros');
+		for (let index in data.$$) {
+			let item = data.$$[index];
+			for (let subIndex in item.$$) {
+				let subItem = item.$$[subIndex];
+				Editor.log("sub:", subItem);
+				let subName = subItem["#name"];
+				if (subName == "FrameImage") {
+					var mImage = node.addComponent("MImage");
+					if (subItem.$.FrameMode != macros.FrameMode.SPRITE_1x1) {
+						mImage.frameMode = subItem.$.FrameMode;
+					} else {
+						mImage.frameMode = macros.FrameMode.SPRITE_1x1;
+					}
+					Editor.Ipc.sendToMain("ui-editor-extend:getSurfacePath", subItem.$.FileName, (url) => {
+						if (url != null) {
+							let p = path.join("resources", subItem.$.FileName);
+							Editor.log("cc.Sprite:", data.$.Name, p);
+						}
+					});
+				}
+			}
+		}
+		if (data.$.Touchable == "true") {
+			var mTouchable = node.addComponent("MTouchable");
+			mTouchable.touchable = true;
+		}
+		return node;
 	}
 }
